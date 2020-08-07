@@ -19,6 +19,13 @@ def package_data(pkg, root_list):
     return {pkg: data}
 
 
+# Requirements
+requirements = ['XBlock>=1.2']
+with open("requirements.txt", "r") as f:
+    for library in map(str.strip, f.read().split("\n")):
+        if library != "":
+            requirements.append(library)
+
 # Main ##############################################################
 
 setup(
@@ -26,9 +33,7 @@ setup(
     version='1.2',
     description='XBlock - Image Explorer',
     packages=['image_explorer'],
-    install_requires=[
-        'XBlock>=1.2',
-    ],
+    install_requires=requirements,
     entry_points={
         'xblock.v1': 'image-explorer = image_explorer:ImageExplorerBlock',
     },
